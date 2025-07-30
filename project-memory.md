@@ -1,92 +1,112 @@
 # Project Memory — *Hire Me!* Job Search CRM
 
-## 📋 Testing Strategy & Documentation
+## Project Facts & Learnings
 
-### tests.md File Creation
-**Date:** Current implementation
-**Purpose:** Created a comprehensive `tests.md` file in the project root to serve as both immediate manual QA checklist and long-term automated testing strategy roadmap.
+### Technical Stack Decisions
+- **Frontend**: React with TypeScript, Tailwind CSS, and Radix UI components
+- **Backend**: Convex for database, serverless functions, and real-time updates
+- **Authentication**: Custom email/password auth using bcryptjs for hashing
+- **File Storage**: Convex built-in storage for PDF resumes
+- **PDF Parsing**: Using PDF.js (pdfjs-dist) for client-side PDF text extraction
+- **Form Handling**: React Hook Form with Zod validation for type-safe forms
 
-**Key Features:**
-- **Manual QA Test Cases:** 47 detailed test cases covering all Milestone 1 functionality (authentication, resume upload, parsing, editing, UI/UX, error handling)
-- **Automated Testing Roadmap:** Strategic plan for unit tests, integration tests, E2E tests, performance tests, and security tests
-- **Test Execution Tracking:** Template for documenting test results, issues found, and progress across milestones
-- **Living Document Approach:** Will be updated with new test cases as each milestone is implemented
+### Implemented Features (Milestone 1)
+- **User Authentication System**:
+  - Email/password registration and login
+  - User persona selection (targeted vs volume)
+  - Secure password hashing with bcryptjs
+  - Authentication context with localStorage persistence
+  - AuthWrapper component for protected routes
 
-**Testing Tools Recommended:**
-- **Unit/Integration:** Vitest, React Testing Library, Jest
-- **E2E:** Playwright, Cypress  
-- **Performance:** Lighthouse, WebPageTest, Artillery.js
-- **Security:** OWASP ZAP, Burp Suite, npm audit
+- **Resume Upload & Parsing**:
+  - Drag-and-drop PDF upload interface using react-dropzone
+  - PDF text extraction using PDF.js library
+  - Basic resume parsing with structured data extraction (name, email, phone, experience, education, skills)
+  - File storage in Convex with HTTP endpoints for upload
+  - Master resume concept with isMaster flag
 
-**Impact:** Establishes systematic testing approach from the beginning, ensuring quality as features are added and providing clear QA checklist for each development cycle.
+- **Resume Display & Management**:
+  - Comprehensive resume display component with edit capabilities
+  - Structured editing for experience, education, skills, and certifications
+  - Add/remove functionality for dynamic entries
+  - Real-time UI updates with editing states
 
-## 🏗️ Architecture Decisions
+### Database Schema Design
+- **Users Table**: Email, password hash, persona selection, timestamps
+- **Resumes Table**: File references, parsed text, structured data, master resume flag
+- **Jobs Table**: Prepared schema for job tracking (not yet implemented)
+- **Indexes**: Optimized queries for user lookups and resume filtering
 
-### Resume Parser Selection Process
-**Decision:** Implemented PDF.js-based client-side parsing with server-side processing
-**Rationale:** After reviewing free resume parsing options, chose PDF.js for reliable text extraction combined with custom parsing logic for structured data extraction
-**Implementation:** Text extraction on client, structured parsing via Convex functions
+### UI/UX Patterns Established
+- **Mobile-First Design**: Responsive layouts with Tailwind CSS
+- **Component Library**: Radix UI primitives with custom styling
+- **Icon System**: Lucide React icons for consistent visual language
+- **Form Patterns**: Consistent form layouts with validation feedback
+- **Loading States**: Proper loading indicators and error handling
+- **Navigation**: Tab-based navigation for different views
 
-### Authentication Strategy  
-**Decision:** Email/password authentication with bcryptjs hashing and localStorage session persistence
-**Implementation:** Convex-based user management with secure password storage and client-side session handling
+### PDF Parsing Implementation
+- **Simple Text Extraction**: Basic parsing using PDF.js without external dependencies
+- **Structured Data Extraction**: Heuristic-based parsing for resume sections
+- **Limitation Acknowledged**: Current parser is basic; production would need more sophisticated parsing
 
-### File Storage Architecture
-**Decision:** Convex file storage with HTTP endpoints for PDF upload handling
-**Benefits:** Leverages Convex's built-in file storage capabilities while maintaining secure upload workflows
+### File Upload Strategy
+- **Convex HTTP Routes**: Custom HTTP endpoints for file upload
+- **CORS Handling**: Proper CORS configuration for cross-origin requests
+- **Error Handling**: Comprehensive error handling for upload failures
 
-## 🔧 Development Patterns
+## Development Patterns & Best Practices
 
-### Component Organization
-**Pattern:** Modular component structure with clear separation of concerns
-- `/components/auth/` - Authentication-related components
-- `/components/resume/` - Resume management components  
-- `/components/ui/` - Reusable UI components (Radix UI based)
-- `/lib/` - Utility functions and shared logic
+### Code Organization
+- **Separation of Concerns**: Clear distinction between UI components, business logic, and data access
+- **Type Safety**: Comprehensive TypeScript usage with proper type definitions
+- **Component Composition**: Reusable UI components following single responsibility principle
 
-### Form Handling Strategy
-**Pattern:** React Hook Form + Zod validation for all forms
-**Benefits:** Type-safe form handling with comprehensive validation and error handling
+### State Management
+- **Context API**: Authentication state managed through React Context
+- **Convex Queries**: Real-time data synchronization with automatic updates
+- **Local State**: Component-level state for UI interactions and forms
 
-## 📊 Technology Stack Learnings
+### Error Handling
+- **Form Validation**: Client-side validation with Zod schemas
+- **API Error Handling**: Proper error messaging and user feedback
+- **File Upload Errors**: Specific error handling for upload and parsing failures
 
-### Convex Integration
-**Key Learnings:**
-- Convex mutations handle both database operations and business logic effectively
-- HTTP endpoints provide clean file upload workflows
-- Real-time updates work seamlessly with React components
+## Next Steps & Considerations
 
-### PDF Processing
-**Implementation Notes:**
-- PDF.js provides reliable text extraction from uploaded resumes
-- Custom parsing logic needed for structured data extraction (experience, education, skills)
-- Error handling crucial for various PDF formats and quality levels
+### Resume Parser Enhancement
+- Current implementation is basic and may need replacement with more sophisticated parsing
+- Consider external services or more advanced parsing libraries for production use
+- May need to handle various PDF formats and layouts better
 
-## 🎯 Project Progress Insights
+### Security Improvements
+- Currently using simple localStorage for session persistence
+- May need more secure session management for production
+- File upload security considerations (virus scanning, file type validation)
 
-### Milestone 1 Completion
-**Status:** All Milestone 1 tasks completed successfully
-**Key Achievements:**
-- Complete authentication system with persona selection
-- Full resume upload, parsing, and editing functionality
-- Mobile-first responsive design
-- Comprehensive error handling and user feedback
+### Performance Optimizations
+- Large PDF files may cause performance issues with current client-side parsing
+- Consider server-side parsing for better performance and security
+- Implement proper loading states and progress indicators
 
-**Technical Debt:** None identified at this stage
-**Performance:** Initial implementation performs well for expected user load
+### User Experience Enhancements
+- Add more sophisticated resume editing capabilities
+- Implement undo/redo functionality for resume editing
+- Better visual feedback for parsing results and structured data display
 
-## 🔮 Future Considerations
+## Technical Debt & Future Refactoring
 
-### Scalability Preparations
-- File storage strategy ready for larger files and multiple file types
-- Authentication system can be extended for additional providers if needed
-- Component architecture supports easy addition of new features
+### File Upload Implementation
+- Current HTTP endpoint implementation is basic
+- May need more sophisticated file handling and validation
+- Consider implementing chunked uploads for large files
 
-### Testing Integration Points
-- Component structure supports easy unit testing
-- Convex functions designed for integration testing
-- UI components built with E2E testing in mind
+### Resume Data Structure
+- Current structured data format may need refinement based on user feedback
+- Consider more flexible schema for different resume formats and styles
+- May need versioning strategy for resume data structure changes
 
----
-
-*This document should be updated with new learnings, decisions, and insights as development progresses.*
+### Component Library
+- Some UI components are basic implementations
+- Consider adopting a more comprehensive component library or building out custom library further
+- Implement consistent design system with proper theming support

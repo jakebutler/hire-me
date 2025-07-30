@@ -16,41 +16,41 @@ Building a mobile-first web app offering a smart job-search CRM with role-specif
 **Goal:** Enable user registration, login, and PDF resume upload with parsing
 
 #### Core Authentication Tasks
-- [ ] **AUTH-001**: Set up Convex schema for User model
+- [x] **AUTH-001**: Set up Convex schema for User model
   - Define User interface with email, passwordHash, persona fields
   - Create Convex mutations for user registration/login
   - Implement password hashing and validation
-- [ ] **AUTH-002**: Create registration/login UI components
+- [x] **AUTH-002**: Create registration/login UI components
   - Build mobile-first registration form
   - Build login form with email/password
   - Add form validation and error handling
   - Style with Tailwind CSS and Radix UI components
-- [ ] **AUTH-003**: Implement authentication state management
+- [x] **AUTH-003**: Implement authentication state management
   - Set up Convex auth integration
   - Create authentication context/hooks
   - Handle session persistence and logout
 
 #### Resume Upload & Parsing Tasks
-- [ ] **RESUME-001**: Research and select free resume parser
+- [x] **RESUME-001**: Research and select free resume parser
   - Evaluate options from EdenAI article: ResumeParser.io, PyResparser, Resume-Parser
   - Test parsing accuracy for structured fields (name, contact, experience, education, skills)
   - Select parser that integrates well with Convex serverless functions
   - Document parser selection rationale
-- [ ] **RESUME-002**: Set up Convex schema for Resume model
+- [x] **RESUME-002**: Set up Convex schema for Resume model
   - Define Resume interface with structured fields
   - Create ExperienceEntry and EducationEntry interfaces
   - Set up file storage strategy for PDF uploads
-- [ ] **RESUME-003**: Implement PDF upload UI
+- [x] **RESUME-003**: Implement PDF upload UI
   - Create drag-and-drop file upload component
   - Add file picker fallback option
   - Implement upload progress indicators
   - Add file validation (PDF only, size limits)
-- [ ] **RESUME-004**: Build resume parsing Convex function
+- [x] **RESUME-004**: Build resume parsing Convex function
   - Integrate selected parser library
   - Create serverless function to process uploaded PDFs
   - Extract and structure resume data
   - Store parsed data in Convex database
-- [ ] **RESUME-005**: Create master resume display/management
+- [x] **RESUME-005**: Create master resume display/management
   - Build UI to display parsed resume data
   - Allow basic editing of structured fields
   - Implement resume re-upload functionality
@@ -291,15 +291,16 @@ Building a mobile-first web app offering a smart job-search CRM with role-specif
 - [ ] Milestone 8: LLM Tracing, Observability & Evaluation
 
 ### Current Sprint Focus
-**Current Focus:** Setting up project foundation and Milestone 1 tasks
+**Current Focus:** Milestone 1 Complete - Ready for Milestone 2
 
 ### Next Actions
-1. Begin with BACKEND-001: Initialize Convex project
-2. Complete UI-001: Set up mobile-first React application  
-3. Start AUTH-001: Set up Convex schema for User model
+1. Start JD-001: Research and evaluate job description parsers
+2. Begin JD-002: Set up Convex schema for Job model
+3. Continue with Milestone 2 implementation
 
 ### Notes
-- Resume parser selection pending research completion (RESUME-001)
+- **Milestone 1 Complete**: All authentication and resume upload features implemented
+- **Resume Parser Selected**: Using PDF.js (pdfjs-dist) for basic text extraction with custom structured data parsing
 - Job description parser evaluation needed (JD-001)
 - TinaCMS integration temporary - plan migration timeline
 - Chrome Extension deferred to separate sub-project
