@@ -1,0 +1,7 @@
+Summarize this job description into:
+– Role summary
+– Required skills
+– Keywords to feature in a resume
+
+JD:
+{{job_description_text}}

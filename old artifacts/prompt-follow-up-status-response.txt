@@ -1,0 +1,4 @@
+The user marked this job as "{{new_status}}".
+Update the tracker, and suggest the next logical step.
+Job:
+{{job_data}}

@@ -1,0 +1,8 @@
+You are a job search assistant for a {{persona}} user.
+Given this job tracker data, write:
+– Progress highlights
+– Top 3 next actions
+– Motivational quote
+
+Data:
+{{user_job_tracker_data}}

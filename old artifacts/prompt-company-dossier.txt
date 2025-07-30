@@ -1,0 +1,6 @@
+Provide a brief dossier for the company, including:
+– Company mission overview
+– Known hiring manager or team (from public info)
+– Recent news headlines or funding
+
+Company Name: {{company_name}}
