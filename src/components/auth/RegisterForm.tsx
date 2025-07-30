@@ -5,7 +5,6 @@ import { z } from 'zod';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
-import { useAuth } from '../../lib/auth';
 import { UserPlus, Mail, Lock, AlertCircle, Target, Briefcase } from 'lucide-react';
 
 const registerSchema = z.object({
@@ -27,7 +26,6 @@ interface RegisterFormProps {
 }
 
 export function RegisterForm({ onSwitchToLogin }: RegisterFormProps) {
-  const { register: registerUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -47,7 +45,9 @@ export function RegisterForm({ onSwitchToLogin }: RegisterFormProps) {
     setError(null);
 
     try {
-      await registerUser(data.email, data.password, data.persona);
+      // TODO: Implement registration when Convex is working  
+      console.log('Registration attempt:', data.email, data.persona);
+      alert('Registration functionality will be available once backend is connected!');
     } catch (err: any) {
       setError(err.message || 'Registration failed. Please try again.');
     } finally {

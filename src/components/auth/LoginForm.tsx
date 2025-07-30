@@ -5,7 +5,6 @@ import { z } from 'zod';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
-import { useAuth } from '../../lib/auth';
 import { LogIn, Mail, Lock, AlertCircle } from 'lucide-react';
 
 const loginSchema = z.object({
@@ -20,7 +19,6 @@ interface LoginFormProps {
 }
 
 export function LoginForm({ onSwitchToRegister }: LoginFormProps) {
-  const { login } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -37,7 +35,9 @@ export function LoginForm({ onSwitchToRegister }: LoginFormProps) {
     setError(null);
 
     try {
-      await login(data.email, data.password);
+      // TODO: Implement login when Convex is working
+      console.log('Login attempt:', data.email);
+      alert('Login functionality will be available once backend is connected!');
     } catch (err: any) {
       setError(err.message || 'Login failed. Please try again.');
     } finally {
